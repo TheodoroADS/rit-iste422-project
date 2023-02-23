@@ -1,15 +1,15 @@
 
-SRC=$(wildcard src/**/*) # trick to find all source files under the src diretory
+SRC=$(wildcard src/**/**/*) # trick to find all source files under the src diretory
 
 all: clean test run
 
 build: $(SRC)
 	mkdir -p build 
-	javac src/main/*.java -d build
-	javac -cp lib/junit-4.12.jar:lib/hamcrest-core-1.3.jar src/test/*.java -d build -sourcepath ./src/main
+	javac src/main/java/*.java -d build
+	javac -cp lib/junit-4.12.jar:lib/hamcrest-core-1.3.jar src/test/java/*.java -d build -sourcepath ./src/main/java
 
 test: build
-	java -cp ./build:lib/junit-4.12.jar:lib/hamcrest-core-1.3.jar org.junit.runner.JUnitCore EdgeConnectorTest
+	java -cp ./build/:lib/junit-4.12.jar:lib/hamcrest-core-1.3.jar org.junit.runner.JUnitCore EdgeConnectorTest
 
 
 run: build
